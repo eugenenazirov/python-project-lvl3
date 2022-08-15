@@ -1,5 +1,4 @@
-import tempfile
-from pathlib import Path
+import requests
 
 
 # tmp_dir = tempfile.TemporaryDirectory()
@@ -9,7 +8,12 @@ from pathlib import Path
 
 # path = Path(tmp_name, 'hexlet.html')
 # print(path)
+def make_file_name(link):
+    if link.
+
 
 
 def download(link, path):
-    pass
+    src = requests(link).text
+    filename = make_file_name(link)
+    with open()
