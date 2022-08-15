@@ -1,4 +1,5 @@
 import requests
+import os
 
 
 # tmp_dir = tempfile.TemporaryDirectory()
@@ -26,8 +27,11 @@ def make_file_name(link: str):
 
 
 def download(link, output):
+    print(type(link))
+    print(type(output))
     src = requests.get(link).text
     filename = make_file_name(link)
-    # with open(path):
-    #     pass
-    return filename
+    output_path = os.path.join(output, filename)
+    with open(output_path, 'w+') as output_file:
+        output_file.write(src)
+    return output_path
