@@ -8,10 +8,9 @@
 ### Code Coverage by codeclimate
 [![Test Coverage](https://api.codeclimate.com/v1/badges/20ba8352a3dd94528a80/test_coverage)](https://codeclimate.com/github/eugenenazirov/python-project-lvl3/test_coverage)
 
-### Generate Diff
-The cli tool for downloading html pages.
-Supports .json and .yaml files.
-Output formats: stylish (default), plain & json.
+# Page Downloader
+The CLI tool for downloading html pages.
+Developing in progress.
 
 Requirements: Python 3.10, pip.
 
