@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Web-page downloading tool."
 authors = ["eugenenazirov"]
 packages = [
-  { include = "page-loader" },
+  { include = "page_loader" },
 ]
 
 [tool.poetry.dependencies]

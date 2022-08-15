@@ -1,4 +1,4 @@
-from page_loader import page_loader
+from page_loader import download
 import argparse
 import os
 
@@ -11,13 +11,12 @@ def main():
     args = pgloader.parse_args()
     output = args.output
     if output:
-        path_to_page = page_loader(
-            args.first_file,
+        path_to_page = download(
+            args.url,
             output=output)
     else:
         current_dir = os.getcwd()
-        path_to_page = page_loader(args.first_file, args.second_file,
-        output = current_dir)
+        path_to_page = download(args.url, output = current_dir)
     print(path_to_page)
 
 
