@@ -13,8 +13,8 @@ import os
 def make_file_name(link: str):
     if link.startswith('https://') or link.startswith('http://'):
         parse_link = link.split('/')
-        parse_link.remove('https:')
-        parse_link.remove('')
+        parse_link.pop(0)
+        parse_link.pop(0)
         parse_link_to_str = '-'.join(parse_link)
         spec_sym_to_dash = ''
         for char in parse_link_to_str:
@@ -27,8 +27,6 @@ def make_file_name(link: str):
 
 
 def download(link, output):
-    print(type(link))
-    print(type(output))
     src = requests.get(link).text
     filename = make_file_name(link)
     output_path = os.path.join(output, filename)
