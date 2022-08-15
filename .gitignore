@@ -1,0 +1,35 @@
+.env
+.venv
+env/
+venv/
+
+# Editors
+.vscode/
+.idea/
+
+# Vagrant
+.vagrant/
+
+# Mac/OSX
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Source for the following rules: https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.egg-info
+__pycache__
+dist/
+*.pyc
+.venv/
+.coverage
+coverage.xml
+.pytest_cache/
+.vim
+brain_games/scripts/__pycache__/__init__.cpython-310.pyc
+brain_games/scripts/__pycache__/brain_games.cpython-310.pyc
