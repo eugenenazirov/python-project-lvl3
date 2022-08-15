@@ -11,6 +11,8 @@ import os
 # print(path)
 
 def make_file_name(link: str):
+    root_ext = os.path.splitext(link)
+    parse_link = root_ext[0]
     parse_link = link.split('/')
     parse_link.pop(0)
     parse_link.pop(0)
