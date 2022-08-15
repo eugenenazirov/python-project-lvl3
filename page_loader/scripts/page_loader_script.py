@@ -16,7 +16,7 @@ def main():
             output=output)
     else:
         current_dir = os.getcwd()
-        path_to_page = download(args.url, output = current_dir)
+        path_to_page = download(args.url, output=current_dir)
     print(path_to_page)
 
 
