@@ -4,8 +4,9 @@ import os
 
 
 def main():
-    pgloader = argparse.ArgumentParser(prog='page-loader', 
-    description='Downloads HTML pages on your machine.')
+    pgloader = argparse.ArgumentParser(
+        prog='page-loader',
+        description='Downloads HTML pages on your machine.')
     pgloader.add_argument('url')
     pgloader.add_argument('-o', '--output', help='path to output html file')
     args = pgloader.parse_args()
