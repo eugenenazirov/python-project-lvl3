@@ -25,5 +25,5 @@ def expected_name():
 def test_download_path(download_link, expected_name):
     tmp_dir = tempfile.TemporaryDirectory()
     tmp_path = tmp_dir.name
-    assertion_result = Path(tmp_path, expected_name)
+    assertion_result = f'{tmp_path}{expected_name}'
     assert download(download_link, tmp_dir) == assertion_result
