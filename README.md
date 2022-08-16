@@ -19,3 +19,5 @@ Install the package with <pip install> and repository cloning https link.
 
 
 ### Demo
+Download hexlet.io page with pictures
+https://asciinema.org/a/515160
