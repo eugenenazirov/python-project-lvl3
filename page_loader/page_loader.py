@@ -65,8 +65,8 @@ def download_images(src_link, img_tags, output_path, name):
     for tag in img_tags:
         img_link = tag.get('src')
         if img_link:
+            img_link_original = img_link
             if is_link_local(img_link):
-                img_link_original = img_link
                 img_link = make_full_link(src_link, img_link)
             path_to_img = save_img(img_link, output_path, name)
             old_and_new_links.append((img_link_original, path_to_img))
