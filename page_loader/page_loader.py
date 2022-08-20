@@ -17,6 +17,8 @@ def make_file_name(link: str):
     parse_link = link.split('/')
     parse_link.pop(0)
     parse_link.pop(0)
+    if link.endswith('.html'):
+        parse_link.pop(-1)
     parse_link_to_str = '-'.join(parse_link)
     spec_sym_to_dash = ''
     for char in parse_link_to_str:
