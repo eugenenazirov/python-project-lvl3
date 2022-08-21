@@ -12,13 +12,23 @@ def download_url():
 
 
 @pytest.fixture
-def get_img_url():
-    return "https://test.com/img/image.png"
+def expected_name():
+    return 'test-com-example.html'
 
 
 @pytest.fixture
-def expected_name():
+def dwnld_url_with_html_end():
+    return 'http://test.com/example.html'
+
+
+@pytest.fixture
+def exp_name_without_html_end():
     return 'test-com-example.html'
+
+
+@pytest.fixture
+def get_img_url():
+    return "https://test.com/img/image.png"
 
 
 @pytest.fixture
@@ -35,6 +45,14 @@ def test_download_path(requests_mock, download_url, expected_name):
     requests_mock.get(download_url, text='<p>example</p>')
     assertion_result = os.path.join(tmp_path, expected_name)
     assert download(download_url, tmp_path) == assertion_result
+
+
+def test_path_with_html_end(requests_mock, dwnld_url_with_html_end, exp_name_without_html_end):
+    tmp_dir = tempfile.TemporaryDirectory()
+    tmp_path = tmp_dir.name
+    requests_mock.get(dwnld_url_with_html_end, text='<p>example</p>')
+    assertion_result = os.path.join(tmp_path, exp_name_without_html_end)
+    assert download(dwnld_url_with_html_end, tmp_path) == assertion_result
 
 
 def test_request_with_mock(requests_mock, download_url):
