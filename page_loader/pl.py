@@ -48,6 +48,19 @@ def make_full_link(src_link, img_link):
     return site + '/' + img_link
 
 
+def process_img_tag(tag, params):
+    img_link = tag.get('src')
+    src_link = params.get('src_link')
+    output_path = params.get('output_path')
+    name = params.get('name')
+    if img_link:
+        img_link_original = img_link
+        if is_link_local(img_link):
+            img_link = make_full_link(src_link, img_link)
+        path_to_img = save_img(img_link, output_path, name)
+    return img_link_original, path_to_img
+
+
 def save_img(link, path, name):
     img_content = requests.get(link).content
     dir_name = os.path.splitext(name)[0] + '_files'
@@ -67,14 +80,13 @@ def save_img(link, path, name):
 
 def download_images(src_link, img_tags, output_path, name):
     old_and_new_links = []
+    params = {
+        'src_link': src_link,
+        'output_path': output_path,
+        'name': name
+    }
     for tag in img_tags:
-        img_link = tag.get('src')
-        if img_link:
-            img_link_original = img_link
-            if is_link_local(img_link):
-                img_link = make_full_link(src_link, img_link)
-            path_to_img = save_img(img_link, output_path, name)
-            old_and_new_links.append((img_link_original, path_to_img))
+        old_and_new_links.append(process_img_tag(tag, params=params))
     return old_and_new_links
 
 
