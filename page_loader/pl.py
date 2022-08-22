@@ -98,13 +98,18 @@ def make_file_name(url: str, file_ext='.html'):
     return result
 
 
+def replace_link(html_file, src_link, local_link):
+    if src_link in html_file:
+        html_file = html_file.replace(src_link, local_link)
+    return html_file
+
+
 def change_links(html: str, links: list):
     for link_pair in links:
         if link_pair:
             src_link = link_pair[0]
             local_link = link_pair[1]
-        if src_link in html:
-            html = html.replace(src_link, local_link)
+            html = replace_link(html, src_link, local_link)
     return html
 
 
