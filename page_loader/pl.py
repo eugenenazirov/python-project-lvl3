@@ -29,6 +29,8 @@ def get_link_tags(src_soup):
 
 
 def has_protocol(link: str):
+    if not link:
+        return
     return any((link.startswith('http'), link.startswith('https')))
 
 
