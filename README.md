@@ -24,3 +24,6 @@ https://asciinema.org/a/515160
 
 Download hexlet.io page with local content
 https://asciinema.org/a/516344
+
+Run with logging:
+https://asciinema.org/a/516357
