@@ -24,6 +24,10 @@ def get_img_tags(src_soup):
     return src_soup.find_all('img')
 
 
+def get_link_tags(src_soup):
+    return src_soup.find_all('link')
+
+
 def has_protocol(link: str):
     return any((link.startswith('http'), link.startswith('https')))
 
@@ -39,23 +43,6 @@ def is_local(src_url: str, resource_url: str):
 def make_full_link(src_url, img_link):
     site = os.path.split(src_url)[0]
     return urljoin(site, img_link)
-
-
-def save_img(url, path, name):
-    img_content = requests.get(url).content
-    dir_name = os.path.splitext(name)[0] + '_files'
-    dir_path = os.path.join(path, dir_name)
-    if not os.path.exists(dir_path):
-        os.mkdir(dir_path)
-    assets_path = os.path.join(dir_path, 'assets')
-    if not os.path.exists(assets_path):
-        os.mkdir(assets_path)
-    local_name = os.path.split(url)[1]
-    local_full_path = os.path.join(assets_path, local_name)
-    local_tag_path = os.path.join(dir_name, 'assets', local_name)
-    with open(local_full_path, 'wb') as f:
-        f.write(img_content)
-    return local_tag_path
 
 
 def process_tag(tag, params):
@@ -117,10 +104,6 @@ def change_links(html: str, links: list):
         if src_link in html:
             html = html.replace(src_link, local_link)
     return html
-
-
-def get_link_tags(src_soup):
-    return src_soup.find_all('link')
 
 
 def save_resource(url, path, name):
