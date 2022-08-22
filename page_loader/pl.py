@@ -3,6 +3,7 @@ import os
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from urllib.parse import urljoin
+import logging
 
 
 headers = {
@@ -43,14 +44,18 @@ def is_local(src_url: str, resource_url: str):
 
 
 def make_full_link(src_url, resource_link):
+    logging.debug('Making full web link to download...')
     site = os.path.split(src_url)[0]
     return urljoin(site, resource_link)
 
 
 def process_tag(tag, params):
+    logging.debug(f"Start to process {tag=}")
     if tag.name == ('link'):
+        logging.debug('Got link tag to process')
         resource_link = tag.get('href')
     else:
+        logging.debug('Got tag to process')
         resource_link = tag.get('src')
 
     src_link = params.get('src_link')
@@ -60,13 +65,17 @@ def process_tag(tag, params):
     if not all((resource_link, is_local(
             src_url=src_link,
             resource_url=resource_link))):
+        logging.debug(f"{resource_link} is not local. It won't be downloaded.")
         return
 
     original_link = resource_link
     if not has_protocol(resource_link):
+        logging.debug(f"{resource_link} doesn't have any protocol.\
+             Need to make full web link to downloaded.")
         resource_link = make_full_link(src_link, resource_link)
+        logging.debug("Full web link made successfully.")
     path_to_resource = save_resource(resource_link, output_path, name)
-
+    logging.debug("Resource has been downloaded.")
     return original_link, path_to_resource
 
 

@@ -1,9 +1,11 @@
 from page_loader import download
 import argparse
 import os
+import logging
 
 
 def main():
+    logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
     pgloader = argparse.ArgumentParser(
         prog='page-loader',
         description='Downloads HTML pages on your machine.')
