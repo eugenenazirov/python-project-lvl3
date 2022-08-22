@@ -20,8 +20,8 @@ def get_html_page(link):
     return requests.get(link, headers=headers).text
 
 
-def get_img_tags(src_soup):
-    return src_soup.find_all('img')
+def get_tags(src_soup, tag_type):
+    return src_soup.find_all(tag_type)
 
 
 def get_link_tags(src_soup):
@@ -40,9 +40,9 @@ def is_local(src_url: str, resource_url: str):
     return same_hosts or doesnt_have_protocol
 
 
-def make_full_link(src_url, img_link):
+def make_full_link(src_url, resource_link):
     site = os.path.split(src_url)[0]
-    return urljoin(site, img_link)
+    return urljoin(site, resource_link)
 
 
 def process_tag(tag, params):
@@ -63,14 +63,14 @@ def process_tag(tag, params):
     original_link = resource_link
     if not has_protocol(resource_link):
         resource_link = make_full_link(src_link, resource_link)
-    path_to_img = save_resource(resource_link, output_path, name)
+    path_to_resource = save_resource(resource_link, output_path, name)
 
-    return original_link, path_to_img
+    return original_link, path_to_resource
 
 
-def download_resource(img_tags, params):
+def download_resource(tags, params):
     old_and_new_links = []
-    for tag in img_tags:
+    for tag in tags:
         old_and_new_links.append(process_tag(tag, params=params))
     return old_and_new_links
 

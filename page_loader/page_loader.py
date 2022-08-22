@@ -14,12 +14,16 @@ def download(url, output):
         'name': filename
     }
 
-    src_img_tags = pl.get_img_tags(soup)
     web_and_local_links = []
-    web_and_local_links.extend(pl.download_resource(src_img_tags, params))
 
-    src_link_tags = pl.get_link_tags(soup)
-    web_and_local_links.extend(pl.download_resource(src_link_tags, params))
+    img_tags = pl.get_tags(soup, 'img')
+    web_and_local_links.extend(pl.download_resource(img_tags, params))
+
+    link_tags = pl.get_tags(soup, 'link')
+    web_and_local_links.extend(pl.download_resource(link_tags, params))
+
+    script_tags = pl.get_tags(soup, 'script')
+    web_and_local_links.extend(pl.download_resource(script_tags, params))
 
     localized_html = pl.change_links(soup_html, web_and_local_links)
     output_path = os.path.join(output, filename)
