@@ -21,6 +21,7 @@ def main():
     pgloader.add_argument('-o', '--output', help='path to output html file')
     args = pgloader.parse_args()
     output = args.output
+
     try:
         if output:
             path_to_page = download(
@@ -30,16 +31,13 @@ def main():
             current_dir = os.getcwd()
             path_to_page = download(args.url, output=current_dir)
         print(f'Page was successfully downloaded as {path_to_page}')
-    except HTTPError:
-        eprint("Check out your url and internet connection.")
-    except ConnectionError:
-        eprint("Bad URL! Page won't be downloaded.")
+    except (HTTPError, ConnectionError):
+        eprint("Error! Check out your url and internet connection.")
     except FileNotFoundError:
-        eprint("Check out the directory in that you try to download page.")
+        eprint("Error! Check out the path that you try to download page.")
     except Exception as exc:
         eprint(f"Unknown Error: {exc} \
 Please report it to me: evgenynazirov@yandex.kz")
-        sys.exit()
     finally:
         sys.exit()
 
