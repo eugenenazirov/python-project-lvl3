@@ -4,7 +4,6 @@ import argparse
 import os
 import logging
 import sys
-import time
 
 
 def main():
@@ -28,7 +27,7 @@ def main():
         else:
             current_dir = os.getcwd()
             path_to_page = download(args.url, output=current_dir)
-        print(path_to_page)
+        print(f'Page was successfully downloaded as {path_to_page}')
     except HTTPError:
         print("Check out your url and internet connection.")
     except FileNotFoundError:
@@ -37,8 +36,6 @@ def main():
         print(f"Unknown Error: {exc} \
 Please report it to me: evgenynazirov@yandex.kz")
     finally:
-        print("Shutting down the app...")
-        time.sleep(1)
         sys.exit()
 
 

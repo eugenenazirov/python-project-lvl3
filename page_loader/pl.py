@@ -104,6 +104,8 @@ def make_file_name(url: str, file_ext='.html'):
     parse_link = url.split('/')
     parse_link.pop(0)
     parse_link.pop(0)
+    if url.endswith('/'):
+        parse_link.pop(-1)
     if url.endswith(file_ext):
         link_end = os.path.splitext(parse_link[-1])
         parse_link.pop(-1)
