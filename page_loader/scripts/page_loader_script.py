@@ -33,10 +33,10 @@ def main():
         eprint("Check out your url and internet connection.")
     except FileNotFoundError:
         eprint("Check out the directory in that you try to download page.")
-    except Exception as exc:
-        eprint(f"Unknown Error: {exc} \
-Please report it to me: evgenynazirov@yandex.kz")
-        sys.exit(1)
+#     except Exception as exc:
+#         eprint(f"Unknown Error: {exc} \
+# Please report it to me: evgenynazirov@yandex.kz")
+#         sys.exit(1)
     finally:
         sys.exit()
 
