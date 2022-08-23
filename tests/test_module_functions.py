@@ -1,8 +1,6 @@
 import pytest
-import os
 from page_loader import pl
 from bs4 import BeautifulSoup
-import requests
 
 
 @pytest.fixture
