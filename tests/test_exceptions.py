@@ -21,14 +21,15 @@ def img_url():
 
 
 @pytest.mark.parametrize(
-    'url', (
+    'url',
+    (
         'https://test.com/400',
         'https://test.com/403',
         'https://test.com/404',
         'https://test.com/408',
         'https://test.com/410',
-        )
     )
+)
 def test_http_client_exceptions(requests_mock, url):
     tmp_dir = tempfile.TemporaryDirectory()
     tmp_path = tmp_dir.name
@@ -42,14 +43,15 @@ def test_http_client_exceptions(requests_mock, url):
 
 
 @pytest.mark.parametrize(
-    'url', (
+    'url',
+    (
         'https://test.com/500',
         'https://test.com/502',
         'https://test.com/503',
         'https://test.com/504',
         'https://test.com/505',
-        )
     )
+)
 def test_http_server_exceptions(requests_mock, url):
     tmp_dir = tempfile.TemporaryDirectory()
     tmp_path = tmp_dir.name

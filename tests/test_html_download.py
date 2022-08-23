@@ -33,7 +33,11 @@ def test_download_path(requests_mock, download_url, expected_name):
     assert download(download_url, tmp_path) == assertion_result
 
 
-def test_path_with_html_end(requests_mock, dwnld_url_with_html_end, exp_name_without_html_end):
+def test_path_with_html_end(
+    requests_mock,
+    dwnld_url_with_html_end,
+    exp_name_without_html_end
+):
     tmp_dir = tempfile.TemporaryDirectory()
     tmp_path = tmp_dir.name
     requests_mock.get(dwnld_url_with_html_end, text='<p>example</p>')

@@ -3,6 +3,7 @@ import os
 import tempfile
 from page_loader import download
 
+
 @pytest.fixture
 def download_url():
     return 'http://test.com/example'

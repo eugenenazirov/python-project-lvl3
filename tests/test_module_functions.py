@@ -19,9 +19,7 @@ def test_headers():
 
 def test_make_soup(html):
     soup = pl.make_soup(html)
-    result = all((soup,
-    isinstance(soup, BeautifulSoup)
-    ))
+    result = all((soup, isinstance(soup, BeautifulSoup)))
     assert result
 
 
@@ -36,3 +34,4 @@ def test_get_tags(html):
     soup = pl.make_soup(html)
     tags = pl.get_tags(soup, 'p')
     result = all((tags, isinstance(tags, list)))
+    assert result

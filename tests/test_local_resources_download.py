@@ -1,7 +1,6 @@
 import pytest
 import os
 import tempfile
-import re
 from page_loader import download
 
 
@@ -79,7 +78,12 @@ def test_css_changing(requests_mock, download_url, link_url, link_html):
     assert local_tag_path in html
 
 
-def test_script_download_path(requests_mock, download_url, script_html, script_url):
+def test_script_download_path(
+    requests_mock,
+    download_url,
+    script_html,
+    script_url
+):
     tmp_dir = tempfile.TemporaryDirectory()
     tmp_path = tmp_dir.name
 
