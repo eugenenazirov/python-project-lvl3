@@ -4,6 +4,10 @@ import logging
 
 
 def download(url, output):
+    if not os.path.exists(output):
+        logging.error(f"Path: {output} doesn't exists!")
+        raise FileNotFoundError(f"Path: {output} doesn't exists!")
+
     src = pl.get_html_page(url)
     logging.info('Download html page successfully.')
     filename = pl.make_file_name(url)

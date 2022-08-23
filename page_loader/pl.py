@@ -1,3 +1,4 @@
+from urllib.error import HTTPError
 import requests
 import os
 from bs4 import BeautifulSoup
@@ -18,7 +19,18 @@ def make_soup(html_file):
 
 
 def get_html_page(link):
-    return requests.get(link, headers=headers).text
+    response = requests.get(link, headers=headers)
+    text = response.text
+    status = response.status_code
+    if status != 200:
+        logging.error(f'Bad request! URL: {link}. Status: {status}')
+        raise HTTPError(
+            code=status,
+            msg=f"Bad request! HTML page {link=} won't be downloaded.",
+            hdrs=response.headers,
+            fp=response.raw,
+            url=link)
+    return text
 
 
 def get_tags(src_soup, tag_type):
@@ -123,7 +135,20 @@ def change_links(html: str, links: list):
 
 
 def save_resource(url, path, name):
-    content = requests.get(url).content
+    response = requests.get(url)
+    content = response.content
+    status = response.status_code
+
+    if status != 200:
+        logging.error(f'Bad request! URL: {url}. Status: {status}')
+        raise HTTPError(
+            code=status,
+            msg=f"Bad request! Resource: {url} won't be downloaded.",
+            hdrs=response.headers,
+            fp=response.raw,
+            url=url
+        )
+
     dir_name = os.path.splitext(name)[0] + '_files'
     dir_path = os.path.join(path, dir_name)
     if not os.path.exists(dir_path):
