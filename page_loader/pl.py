@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from urllib.parse import urljoin
 import logging
+import sys
 
 
 headers = {
@@ -12,6 +13,10 @@ headers = {
     "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)\
              AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 \
                 Safari/537.36"}
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def make_soup(html_file):
