@@ -27,3 +27,6 @@ https://asciinema.org/a/516344
 
 Run with logging:
 https://asciinema.org/a/516357
+
+Run with incorrect url and path:
+https://asciinema.org/a/516555
