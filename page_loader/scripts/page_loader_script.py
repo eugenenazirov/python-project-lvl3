@@ -31,15 +31,17 @@ def main():
             current_dir = os.getcwd()
             path_to_page = download(args.url, output=current_dir)
         print(f'Page was successfully downloaded as {path_to_page}')
+        sys.exit(0)
     except (HTTPError, ConnectionError):
         eprint("Error! Check out your url and internet connection.")
+        sys.exit(1)
     except FileNotFoundError:
         eprint("Error! Check out the path that you try to download page.")
+        sys.exit(1)
     except Exception as exc:
         eprint(f"Unknown Error: {exc} \
 Please report it to me: evgenynazirov@yandex.kz")
-    finally:
-        sys.exit()
+        sys.exit(1)
 
 
 if __name__ == '__main__':
