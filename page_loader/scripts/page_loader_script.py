@@ -1,5 +1,6 @@
 from page_loader import download
 from page_loader.pl import eprint
+from requests.exceptions import ConnectionError
 from urllib.error import HTTPError
 import argparse
 import os
@@ -31,12 +32,14 @@ def main():
         print(f'Page was successfully downloaded as {path_to_page}')
     except HTTPError:
         eprint("Check out your url and internet connection.")
+    except ConnectionError:
+        eprint("Bad URL! Page won't be downloaded.")
     except FileNotFoundError:
         eprint("Check out the directory in that you try to download page.")
-#     except Exception as exc:
-#         eprint(f"Unknown Error: {exc} \
-# Please report it to me: evgenynazirov@yandex.kz")
-#         sys.exit(1)
+    except Exception as exc:
+        eprint(f"Unknown Error: {exc} \
+Please report it to me: evgenynazirov@yandex.kz")
+        sys.exit()
     finally:
         sys.exit()
 
